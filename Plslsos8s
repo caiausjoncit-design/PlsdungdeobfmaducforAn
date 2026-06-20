@@ -458,11 +458,11 @@ Tab:AddToggle({
         end
     end
 })
-getgenv().AutoStart = true
+getgenv().AutoStart = false
 
 Tab:AddToggle({
 	Name = "Auto Start",
-	Default = true,
+	Default = false,
 	Callback = function(Value)
 		getgenv().AutoStart = Value
 
@@ -514,3 +514,67 @@ Tab:AddToggle({
 		end)
 	end
 })
+
+
+local AutoStart = true
+local Running = false
+
+local EventMobs = workspace:WaitForChild("World Mobs"):WaitForChild("Event Mobs")
+
+local StartDungeon = game:GetService("ReplicatedStorage")
+	:WaitForChild("Packages")
+	:WaitForChild("_Index")
+	:WaitForChild("sleitnick_knit@1.4.7")
+	:WaitForChild("knit")
+	:WaitForChild("Services")
+	:WaitForChild("DungeonLobbyService")
+	:WaitForChild("RF")
+	:WaitForChild("StartDungeon")
+
+local function GetGarriot()
+	for _, v in ipairs(EventMobs:GetChildren()) do
+		if v.Name == "Garriot" then
+			return v
+		end
+	end
+end
+
+task.spawn(function()
+	while true do
+		if AutoStart and not Running then
+			local Boss = GetGarriot()
+
+			if Boss then
+				local Humanoid = Boss:FindFirstChildOfClass("Humanoid")
+
+				if Humanoid and Humanoid.Health <= 0 then
+					Running = true
+
+					task.wait(4)
+
+					while AutoStart do
+						pcall(function()
+							StartDungeon:InvokeServer()
+						end)
+
+						task.wait(0.1)
+					end
+
+					Running = false
+				end
+			end
+		end
+
+		task.wait(0.5)
+	end
+end)
+
+Tab:AddToggle({
+	Name = "Auto Start Rejoin",
+	Default = true,
+	Callback = function(Value)
+		AutoStart = Value
+	end
+})
+
+OrionLib:Init()
