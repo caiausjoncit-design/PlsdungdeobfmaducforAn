@@ -3,7 +3,7 @@ local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Window = OrionLib:MakeWindow({
-	Name = "Furry infection outbreak V2",
+	Name = "huhu",
 	HidePremium = false,
 	SaveConfig = true,
 	ConfigFolder = "Config"
