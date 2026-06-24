@@ -198,7 +198,7 @@ Tab:AddToggle({
                     end
                 end)
 
-                task.wait(0.2)
+                task.wait(0.001)
             end
         end)
     end
