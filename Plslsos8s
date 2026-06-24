@@ -580,7 +580,7 @@ Tab:AddToggle({
 OrionLib:Init()
 Tab:AddToggle({
 	Name = "Auto lock all mobs",
-	Default = false,
+	Default = true,
 	Callback = function(Value)
 		getgenv().AutoLock = Value
 
@@ -603,7 +603,7 @@ Tab:AddToggle({
 					end
 				end
 
-				task.wait(0.1)
+				task.wait(0.01)
 			end
 		end)
 	end
