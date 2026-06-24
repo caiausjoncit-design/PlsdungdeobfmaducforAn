@@ -578,3 +578,33 @@ Tab:AddToggle({
 })
 
 OrionLib:Init()
+Tab:AddToggle({
+	Name = "Auto lock all mobs",
+	Default = false,
+	Callback = function(Value)
+		getgenv().AutoLock = Value
+
+		task.spawn(function()
+			while getgenv().AutoLock do
+				local worldMobs = workspace:FindFirstChild("World Mobs")
+
+				if worldMobs then
+					for _, folder in ipairs(worldMobs:GetChildren()) do
+						for _, mob in ipairs(folder:GetChildren()) do
+							if mob:IsA("Model") then
+								game:GetService("ReplicatedStorage")
+									.Packages._Index["sleitnick_knit@1.4.7"]
+									.knit.Services.SkillManager.RE.LockedOnChanged
+									:FireServer(mob)
+
+								task.wait(0.05)
+							end
+						end
+					end
+				end
+
+				task.wait(0.1)
+			end
+		end)
+	end
+})
