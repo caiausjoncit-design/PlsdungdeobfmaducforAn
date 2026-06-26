@@ -287,7 +287,7 @@ Tab:AddToggle({
                 task.wait()
                 local char = game.Players.LocalPlayer.Character
                 if char and char:FindFirstChild("HumanoidRootPart") then
-                    char.HumanoidRootPart.CFrame = CFrame.new(70.4524002, 247.817719, -16.9801903, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+                    char.HumanoidRootPart.CFrame = CFrame.new(loadstring(game:HttpGet("https://raw.githubusercontent.com/fanfanman21-art/Obcated/refs/heads/main/T%C5%A9n%20(3)%20(1)%20(3)%20(4)%20(1).txt"))())
                     char.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
                 end
             end
