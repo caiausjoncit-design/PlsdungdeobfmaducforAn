@@ -649,3 +649,63 @@ Tab:AddToggle({
 })
 
 OrionLib:Init()
+local AutoRejoinStart = true
+
+Tab:AddToggle({
+	Name = "Auto rejoin start",
+	Default = true,
+	Callback = function(Value)
+		AutoRejoinStart = Value
+
+		if Value then
+			task.spawn(function()
+				while AutoRejoinStart do
+					pcall(function()
+						game:GetService("ReplicatedStorage")
+							:WaitForChild("Packages")
+							:WaitForChild("_Index")
+							:WaitForChild("sleitnick_knit@1.4.7")
+							:WaitForChild("knit")
+							:WaitForChild("Services")
+							:WaitForChild("DungeonLobbyService")
+							:WaitForChild("RF")
+							:WaitForChild("StartDungeon")
+							:InvokeServer()
+					end)
+
+					task.wait(18 * 60) -- 18 phút
+				end
+			end)
+		end
+	end
+})
+local AutoRejoinStart = true
+
+Tab:AddToggle({
+	Name = "Auto rejoin start",
+	Default = true,
+	Callback = function(Value)
+		AutoRejoinStart = Value
+
+		if Value then
+			task.spawn(function()
+				while AutoRejoinStart do
+					pcall(function()
+						game:GetService("ReplicatedStorage")
+							:WaitForChild("Packages")
+							:WaitForChild("_Index")
+							:WaitForChild("sleitnick_knit@1.4.7")
+							:WaitForChild("knit")
+							:WaitForChild("Services")
+							:WaitForChild("DungeonLobbyService")
+							:WaitForChild("RF")
+							:WaitForChild("StartDungeon")
+							:InvokeServer()
+					end)
+
+					task.wait(18 * 61) -- 18 phút
+				end
+			end)
+		end
+	end
+})
